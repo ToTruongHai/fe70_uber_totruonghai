@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Uber</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+      crossorigin="anonymous"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
+  <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="billModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="billModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content pr-5 pl-5 pt-3 pb-3">
+          <div class="modal-header border-0 mb-1 pt-3 pb-3">
+            <h3 class="h3-title modal-title mx-auto mt-0" id="billModalLabel">
+              Hóa Đơn
+            </h3>
+            <button
+              type="button"
+              class="close ml-0"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div
+              class="uber__type d-flex justify-content-between align-items-center mb-1 pt-3 pb-3"
+            >
+              <p class="text-secondary">Loại Uber:</p>
+              <p><span class="text-dark" id="modalUberType">0</span></p>
+            </div>
+            <div class="table__div pt-3 pb-3">
+              <table style="width: 100%">
+                <tr>
+                  <td class="text-secondary">Quảng Đường:</td>
+                  <td><span id="modalKM">0</span></td>
+                  <td><span class="float-right" id="modalKMPrice">0</span></td>
+                  <td class="float-right">
+                    <span id="modalTotalKMPrice">0</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-secondary">Thời Gian Chờ:</td>
+                  <td><span id="modalWaitTime">0</span></td>
+                  <td>
+                    <span class="float-right" id="modalWaitPrice">0</span>
+                  </td>
+                  <td class="float-right">
+                    <span id="modalTotalWaitPrice">0</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer border-0 mt-1 pt-3 pb-3">
+            <h3 class="h3-title text-secondary">Tổng Tiền:</h3>
+            <p class="text-dark"><span id="modalTotalMoney">0</span> VND</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row h-100 vh-100">
+      <section class="map col-lg-6 col-xl-8 p-0">
+        <div
+          class="map__google"
+          id="google_map"
+          data-map-x="40.722047"
+          data-map-y="-73.986422"
+          data-pin="images/icons/map-marker.png"
+          data-scrollwhell="0"
+          data-draggable="1"
+        ></div>
+        <div class="map__contact">
+          <i class="zmdi zmdi-phone-in-talk"></i>
+          (+84) 961.05.10.14
+        </div>
+      </section>
+
+      <section class="bill col-md-12 col-lg-6 col-xl-4 p-0">
+        <div class="container">
+          <div class="bill__title">
+            <div class="bill__title--img">
+              <img
+                src="images/cybersoft.png"
+                alt="Front End CyberSoft"
+                width="40%"
+              />
+
+              <img
+                src="images/codepro.png"
+                alt="Front End CyberSoft"
+                width="30%"
+              />
+            </div>
+
+            <h1 class="bill__title-banner">TÍNH CƯỚC UBER</h1>
+
+            <h2 class="h2-title">Vui lòng chọn loại xe:</h2>
+            <ul class="row">
+              <li class="type">
+                <input id="uberX" type="radio" name="selector" checked />
+                <label for="uberX">Uber X</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li class="type">
+                <input id="uberSUV" type="radio" name="selector" />
+                <label for="uberSUV">Uber SUV</label>
+                <div class="check"></div>
+              </li>
+
+              <li class="type">
+                <input id="uberBlack" type="radio" name="selector" />
+                <label for="uberBlack">Uber Black</label>
+                <div class="check"></div>
+              </li>
+            </ul>
+          </div>
+
+          <form class="bill__form">
+            <div class="bill__form--input">
+              <h2 class="h2-title">Nhập vào số KM</h2>
+              <input
+                id="soKM"
+                type="number"
+                name="name"
+                placeholder="Số KM ..."
+              />
+              <span class="focus-input"></span>
+            </div>
+            <div class="bill__form--input">
+              <h2 class="h2-title">Nhập thời gian chờ</h2>
+              <input
+                id="thoiGianCho"
+                type="number"
+                name="name"
+                placeholder="Thời gian chờ  ..."
+              />
+              <span class="focus-input"></span>
+            </div>
+            <div class="row justify-content-between">
+              <div class="bill__form--btn">
+                <div class="bgbtn"></div>
+                <button id="btnTinhTien" type="button">TÍNH TIỀN</button>
+              </div>
+              <div class="bill__form--btn">
+                <div class="bgbtn"></div>
+                <button
+                  id="printBill"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#billModal"
+                >
+                  IN HÓA ĐƠN
+                </button>
+              </div>
+            </div>
+          </form>
+          <div id="divThanhTien" class="bill__total">
+            <h2 class="h2-title">
+              Thành tiền:
+              <span id="xuatTien" class="xuatTien"> 12345</span>
+              vnd
+            </h2>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================================ -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- ============================================================================ -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+    <script src="./js/map-custom.js"></script>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
