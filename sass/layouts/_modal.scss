@@ -1,0 +1,38 @@
+/* Modal */
+.modal {
+  .modal-header {
+    border-bottom: 1px dashed gray !important;
+  }
+  .modal-body {
+    border-top: 1px dashed gray !important;
+    border-bottom: 1px dashed gray !important;
+    padding: 0;
+    div > p {
+      font-size: 1.1rem;
+      padding: 5px 0 !important;
+      span {
+        font-size: 1.5rem;
+        padding: 5px 0 !important;
+      }
+    }
+    .uber__type {
+      border-bottom: 1px dashed gray;
+      padding: 0 20px;
+    }
+    .table__div {
+      border-top: 1px dashed gray;
+      padding: 10px 20px;
+      table > tbody > tr > td {
+        font-size: 1rem;
+        padding: 5px 0 !important;
+      }
+    }
+  }
+  .modal-footer {
+    border-top: 1px dashed gray !important;
+    justify-content: space-between;
+    p {
+      font-size: 2rem;
+    }
+  }
+}
