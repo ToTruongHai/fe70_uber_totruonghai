@@ -80,58 +80,84 @@ function checkMoney() {
       break;
   }
 
-  document.getElementById("divThanhTien").style.display = "block";
-  document.getElementById("xuatTien").innerHTML =
-    Intl.NumberFormat().format(totalMoney);
+  let intLFormat = Intl.NumberFormat();
+
+  document.getElementById("xuatTien").innerHTML = intLFormat.format(totalMoney);
   document.getElementById("modalTotalKMPrice").innerHTML =
-    Intl.NumberFormat().format(totalKM);
+    intLFormat.format(totalKM);
   document.getElementById("modalTotalMoney").innerHTML =
-    Intl.NumberFormat().format(totalMoney);
+    intLFormat.format(totalMoney);
   document.getElementById("modalTotalWaitPrice").innerHTML =
-    Intl.NumberFormat().format(totalWait);
+    intLFormat.format(totalWait);
+  document.getElementById("divThanhTien").style.display = "block";
   document.getElementById("modalUberType").innerHTML = uberType;
   document.getElementById("modalKM").innerHTML = soKM;
   document.getElementById("modalWaitTime").innerHTML = Math.round(thoiGianCho);
 
-  if (uberType === "uberX") {
-    document.getElementById("modalWaitPrice").innerHTML =
-      Intl.NumberFormat().format(waitMoney[0]);
-    if (soKM <= 1) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(xPrice[0]);
-    } else if (soKM > 1 && soKM <= 20) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(xPrice[1]);
-    } else if (soKM > 20) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(xPrice[2]);
-    }
-  } else if (uberType === "uberSUV") {
-    document.getElementById("modalWaitPrice").innerHTML =
-      Intl.NumberFormat().format(waitMoney[1]);
-    if (soKM <= 1) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(suvPrice[0]);
-    } else if (soKM > 1 && soKM <= 20) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(suvPrice[1]);
-    } else if (soKM > 20) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(suvPrice[2]);
-    }
-  } else {
-    document.getElementById("modalWaitPrice").innerHTML =
-      Intl.NumberFormat().format(waitMoney[2]);
-
-    if (soKM <= 1) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(blackPrice[0]);
-    } else if (soKM > 1 && soKM <= 20) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(blackPrice[1]);
-    } else if (soKM > 20) {
-      document.getElementById("modalKMPrice").innerHTML =
-        Intl.NumberFormat().format(blackPrice[2]);
-    }
+  switch (uberType) {
+    case "uberX":
+      {
+        document.getElementById("modalWaitPrice").innerHTML = intLFormat.format(
+          waitMoney[0]
+        );
+        if (soKM <= 1) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            xPrice[0]
+          );
+        } else if (soKM > 1 && soKM <= 20) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            xPrice[1]
+          );
+        } else if (soKM > 20) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            xPrice[2]
+          );
+        }
+      }
+      break;
+    case "uberSUV":
+      {
+        document.getElementById("modalWaitPrice").innerHTML = intLFormat.format(
+          waitMoney[1]
+        );
+        if (soKM <= 1) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            suvPrice[0]
+          );
+        } else if (soKM > 1 && soKM <= 20) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            suvPrice[1]
+          );
+        } else if (soKM > 20) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            suvPrice[2]
+          );
+        }
+      }
+      break;
+    case "uberBlack":
+      {
+        document.getElementById("modalWaitPrice").innerHTML = intLFormat.format(
+          waitMoney[2]
+        );
+        if (soKM <= 1) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            blackPrice[0]
+          );
+        } else if (soKM > 1 && soKM <= 20) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            blackPrice[1]
+          );
+        } else if (soKM > 20) {
+          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
+            blackPrice[2]
+          );
+        }
+      }
+      break;
+    default:
+      break;
   }
 }
+
+function formatIntNumber() {}
