@@ -31,7 +31,7 @@ function checkMoney() {
   switch (uberType) {
     case "uberX":
       {
-        totalWait = Math.round(thoiGianCho) * waitMoney[0];
+        totalWait = thoiGianCho * waitMoney[0];
         if (soKM <= 1) {
           totalKM = xPrice[0];
           totalMoney = totalKM + totalWait;
@@ -47,7 +47,7 @@ function checkMoney() {
       break;
     case "uberSUV":
       {
-        totalWait = Math.round(thoiGianCho) * waitMoney[1];
+        totalWait = thoiGianCho * waitMoney[1];
         if (soKM <= 1) {
           totalKM = suvPrice[0];
           totalMoney = suvPrice[0] + totalWait;
@@ -62,7 +62,7 @@ function checkMoney() {
       break;
     case "uberBlack":
       {
-        totalWait = Math.round(thoiGianCho) * waitMoney[2];
+        totalWait = thoiGianCho * waitMoney[2];
         if (soKM <= 1) {
           totalKM = blackPrice[0];
           totalMoney = blackPrice[0] + totalWait;
@@ -92,7 +92,7 @@ function checkMoney() {
   document.getElementById("divThanhTien").style.display = "block";
   document.getElementById("modalUberType").innerHTML = uberType;
   document.getElementById("modalKM").innerHTML = soKM;
-  document.getElementById("modalWaitTime").innerHTML = Math.round(thoiGianCho);
+  document.getElementById("modalWaitTime").innerHTML = thoiGianCho;
 
   switch (uberType) {
     case "uberX":
