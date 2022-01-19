@@ -3,7 +3,13 @@ let btnTinhTien = document.getElementById("btnTinhTien");
 btnTinhTien.onclick = checkMoney;
 
 function checkMoney() {
-  let uberType, totalMoney, totalKM, totalWait;
+  let uberType,
+    totalMoney,
+    totalKM,
+    totalWait,
+    from0to1 = 0,
+    from1to20 = 0,
+    from20above = 0;
   let uberRadio = document.getElementsByName("selector");
   let soKM = document.getElementById("soKM").value;
   let thoiGianCho = document.getElementById("thoiGianCho").value;
@@ -33,13 +39,22 @@ function checkMoney() {
       {
         totalWait = thoiGianCho * waitMoney[0];
         if (soKM <= 1) {
-          totalKM = xPrice[0];
+          from0to1 = xPrice[0];
+          from1to20 = 0;
+          from20above = 0;
+          totalKM = from0to1;
           totalMoney = totalKM + totalWait;
         } else if (soKM > 1 && soKM <= 20) {
-          totalKM = xPrice[1] * soKM;
+          from0to1 = xPrice[0];
+          from1to20 = xPrice[1] * (soKM - 1);
+          from20above = 0;
+          totalKM = from1to20 + from0to1;
           totalMoney = totalKM + totalWait;
         } else if (soKM > 20) {
-          totalKM = xPrice[2] * soKM;
+          from0to1 = xPrice[0];
+          from1to20 = xPrice[1] * 19;
+          from20above = xPrice[2] * (soKM - 20);
+          totalKM = from20above + from1to20 + from0to1;
           totalMoney = totalKM + totalWait;
         }
       }
@@ -49,13 +64,22 @@ function checkMoney() {
       {
         totalWait = thoiGianCho * waitMoney[1];
         if (soKM <= 1) {
-          totalKM = suvPrice[0];
-          totalMoney = suvPrice[0] + totalWait;
+          from0to1 = suvPrice[0];
+          from1to20 = 0;
+          from20above = 0;
+          totalKM = from0to1;
+          totalMoney = totalKM + totalWait;
         } else if (soKM > 1 && soKM <= 20) {
-          totalKM = suvPrice[1] * soKM;
+          from0to1 = suvPrice[0];
+          from1to20 = suvPrice[1] * (soKM - 1);
+          from20above = 0;
+          totalKM = from1to20 + from0to1;
           totalMoney = totalKM + totalWait;
         } else if (soKM > 20) {
-          totalKM = suvPrice[2] * soKM;
+          from0to1 = suvPrice[0];
+          from1to20 = suvPrice[1] * 19;
+          from20above = suvPrice[2] * (soKM - 20);
+          totalKM = from20above + from1to20 + from0to1;
           totalMoney = totalKM + totalWait;
         }
       }
@@ -64,13 +88,22 @@ function checkMoney() {
       {
         totalWait = thoiGianCho * waitMoney[2];
         if (soKM <= 1) {
-          totalKM = blackPrice[0];
-          totalMoney = blackPrice[0] + totalWait;
+          from0to1 = blackPrice[0];
+          from1to20 = 0;
+          from20above = 0;
+          totalKM = from0to1;
+          totalMoney = totalKM + totalWait;
         } else if (soKM > 1 && soKM <= 20) {
-          totalKM = blackPrice[1] * soKM;
+          from0to1 = blackPrice[0];
+          from1to20 = blackPrice[1] * (soKM - 1);
+          from20above = 0;
+          totalKM = from1to20 + from0to1;
           totalMoney = totalKM + totalWait;
         } else if (soKM > 20) {
-          totalKM = blackPrice[2] * soKM;
+          from0to1 = blackPrice[0];
+          from1to20 = blackPrice[1] * 19;
+          from20above = blackPrice[2] * (soKM - 20);
+          totalKM = from20above + from1to20 + from0to1;
           totalMoney = totalKM + totalWait;
         }
       }
@@ -80,19 +113,51 @@ function checkMoney() {
       break;
   }
 
+  // console.log("from0to1: ", from0to1);
+  // console.log("from1to20: ", from1to20);
+  // console.log("from20above: ", from20above);
+
   let intLFormat = Intl.NumberFormat();
 
   document.getElementById("xuatTien").innerHTML = intLFormat.format(totalMoney);
-  document.getElementById("modalTotalKMPrice").innerHTML =
-    intLFormat.format(totalKM);
   document.getElementById("modalTotalMoney").innerHTML =
     intLFormat.format(totalMoney);
   document.getElementById("modalTotalWaitPrice").innerHTML =
     intLFormat.format(totalWait);
   document.getElementById("divThanhTien").style.display = "block";
   document.getElementById("modalUberType").innerHTML = uberType;
-  document.getElementById("modalKM").innerHTML = soKM;
   document.getElementById("modalWaitTime").innerHTML = thoiGianCho;
+
+  // document.getElementById("modalTotalKMPrice").innerHTML =
+  //   intLFormat.format(totalKM);
+  // document.getElementById("modalKM").innerHTML = soKM;
+
+  let tr0to1 = document.getElementById("from0to1");
+  let from0to1__modalKM = document.getElementById("from0to1__modalKM");
+  let from0to1__modalKMPrice = document.getElementById(
+    "from0to1__modalKMPrice"
+  );
+  let from0to1__modalTotalKMPrice = document.getElementById(
+    "from0to1__modalTotalKMPrice"
+  );
+
+  let tr1to20 = document.getElementById("from1to20");
+  let from1to20__modalKM = document.getElementById("from1to20__modalKM");
+  let from1to20__modalKMPrice = document.getElementById(
+    "from1to20__modalKMPrice"
+  );
+  let from1to20__modalTotalKMPrice = document.getElementById(
+    "from1to20__modalTotalKMPrice"
+  );
+
+  let tr20above = document.getElementById("from20above");
+  let from20above__modalKM = document.getElementById("from20above__modalKM");
+  let from20above__modalKMPrice = document.getElementById(
+    "from20above__modalKMPrice"
+  );
+  let from20above__modalTotalKMPrice = document.getElementById(
+    "from20above__modalTotalKMPrice"
+  );
 
   switch (uberType) {
     case "uberX":
@@ -101,17 +166,44 @@ function checkMoney() {
           waitMoney[0]
         );
         if (soKM <= 1) {
-          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
-            xPrice[0]
-          );
+          tr0to1.style.display = "table-row";
+          tr1to20.style.display = "none";
+          tr20above.style.display = "none";
+
+          from0to1__modalKM.innerHTML = 1;
+          from0to1__modalKMPrice.innerHTML = intLFormat.format(xPrice[0]);
+          from0to1__modalTotalKMPrice.innerHTML = from0to1;
+
         } else if (soKM > 1 && soKM <= 20) {
-          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
-            xPrice[1]
-          );
+          tr0to1.style.display = "table-row";
+          tr1to20.style.display = "table-row";
+          tr20above.style.display = "none";
+
+          from0to1__modalKM.innerHTML = 1;
+          from0to1__modalKMPrice.innerHTML = intLFormat.format(xPrice[0]);
+          from0to1__modalTotalKMPrice.innerHTML = from0to1;
+
+          from1to20__modalKM.innerHTML = soKM-1;
+          from1to20__modalKMPrice.innerHTML = intLFormat.format(xPrice[1]);
+          from1to20__modalTotalKMPrice.innerHTML = from1to20;
+
         } else if (soKM > 20) {
-          document.getElementById("modalKMPrice").innerHTML = intLFormat.format(
-            xPrice[2]
-          );
+
+          tr0to1.style.display = "table-row";
+          tr1to20.style.display = "table-row";
+          tr20above.style.display = "table-row";
+
+          from0to1__modalKM.innerHTML = 1;
+          from0to1__modalKMPrice.innerHTML = intLFormat.format(xPrice[0]);
+          from0to1__modalTotalKMPrice.innerHTML = from0to1;
+
+          from1to20__modalKM.innerHTML = 19;
+          from1to20__modalKMPrice.innerHTML = intLFormat.format(xPrice[1]);
+          from1to20__modalTotalKMPrice.innerHTML = from1to20;
+
+          from20above__modalKM.innerHTML = soKM - 20;
+          from20above__modalKMPrice.innerHTML = intLFormat.format(xPrice[2]);
+          from20above__modalTotalKMPrice.innerHTML = from20above;
         }
       }
       break;
@@ -159,5 +251,3 @@ function checkMoney() {
       break;
   }
 }
-
-function formatIntNumber() {}
