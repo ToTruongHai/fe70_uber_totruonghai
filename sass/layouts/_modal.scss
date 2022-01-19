@@ -21,15 +21,33 @@
     }
     .table__div {
       border-top: 1px dashed gray;
+      border-bottom: 1px dashed gray;
+      margin-bottom: 4px;
       padding: 10px 20px;
-      table > tbody > tr > td {
-        font-size: 1rem;
-        padding: 5px 0 !important;
+      table > tbody > tr {
+        td {
+          font-size: 1rem;
+          padding: 5px 0 !important;
+        }
+        .tbody__title {
+          font-weight: bold;
+          white-space: nowrap;
+          min-width: 115px;
+        }
+      }
+      table > tbody > .tbody__totalKM {
+        td {
+          padding-top: 20px !important;
+        }
+        .tbody__totalKM-title {
+          font-weight: bold;
+          white-space: nowrap;
+        }
       }
     }
   }
   .modal-footer {
-    border-top: 1px dashed gray !important;
+    // border-top: 1px dashed gray !important;
     justify-content: space-between;
     p {
       font-size: 2rem;
