@@ -16,7 +16,7 @@ function checkMoney() {
 
   uberRadio.forEach((item) => {
     if (item.checked) {
-        uberRadioChecked = item.id;
+      uberRadioChecked = item.id;
     }
   });
 
@@ -29,7 +29,6 @@ function checkMoney() {
         let uberType = uberArray[0];
         calculatePrice(soKM, thoiGianCho, uberType);
         displayInfo(soKM, thoiGianCho, uberType);
-       
       }
 
       break;
@@ -48,7 +47,7 @@ function checkMoney() {
       }
       break;
     default:
-      console.log("ERROR HAHAHAHAHAHAHA GO FIX IT");
+      console.log("ERROR AT checkMoney() GO FIX IT");
       break;
   }
 }
@@ -56,7 +55,8 @@ function checkMoney() {
 function displayInfo(km, tgCho, uber) {
   let intLFormat = Intl.NumberFormat();
   document.getElementById("totalKM").innerHTML = km;
-  document.getElementById("totalKMMoney").innerHTML = intLFormat.format(totalKM);
+  document.getElementById("totalKMMoney").innerHTML =
+    intLFormat.format(totalKM);
   document.getElementById("xuatTien").innerHTML = intLFormat.format(totalMoney);
   document.getElementById("modalTotalMoney").innerHTML =
     intLFormat.format(totalMoney);
@@ -103,7 +103,9 @@ function displayInfo(km, tgCho, uber) {
     tr20above.style.display = "none";
 
     from0to1__modalKM.innerHTML = 1;
-    from0to1__modalKMPrice.innerHTML = intLFormat.format(uber.uberPriceFrom0To1);
+    from0to1__modalKMPrice.innerHTML = intLFormat.format(
+      uber.uberPriceFrom0To1
+    );
     from0to1__modalTotalKMPrice.innerHTML = intLFormat.format(from0to1);
   } else if (km > 1 && km <= 20) {
     tr0to1.style.display = "table-row";
@@ -111,11 +113,15 @@ function displayInfo(km, tgCho, uber) {
     tr20above.style.display = "none";
 
     from0to1__modalKM.innerHTML = 1;
-    from0to1__modalKMPrice.innerHTML = intLFormat.format(uber.uberPriceFrom0To1);
+    from0to1__modalKMPrice.innerHTML = intLFormat.format(
+      uber.uberPriceFrom0To1
+    );
     from0to1__modalTotalKMPrice.innerHTML = intLFormat.format(from0to1);
 
     from1to20__modalKM.innerHTML = km - 1;
-    from1to20__modalKMPrice.innerHTML = intLFormat.format(uber.uberPriceFrom1To20);
+    from1to20__modalKMPrice.innerHTML = intLFormat.format(
+      uber.uberPriceFrom1To20
+    );
     from1to20__modalTotalKMPrice.innerHTML = intLFormat.format(from1to20);
   } else if (km > 20) {
     tr0to1.style.display = "table-row";
@@ -123,25 +129,30 @@ function displayInfo(km, tgCho, uber) {
     tr20above.style.display = "table-row";
 
     from0to1__modalKM.innerHTML = 1;
-    from0to1__modalKMPrice.innerHTML = intLFormat.format(uber.uberPriceFrom0To1);
+    from0to1__modalKMPrice.innerHTML = intLFormat.format(
+      uber.uberPriceFrom0To1
+    );
     from0to1__modalTotalKMPrice.innerHTML = intLFormat.format(from0to1);
 
     from1to20__modalKM.innerHTML = 19;
-    from1to20__modalKMPrice.innerHTML = intLFormat.format(uber.uberPriceFrom1To20);
+    from1to20__modalKMPrice.innerHTML = intLFormat.format(
+      uber.uberPriceFrom1To20
+    );
     from1to20__modalTotalKMPrice.innerHTML = intLFormat.format(from1to20);
-
-    from20above__modalKM.innerHTML = km - 20;
-    from20above__modalKMPrice.innerHTML = intLFormat.format(uber.uberPriceFrom20AndAbove);
+    from20above__modalKM.innerHTML = (km - 20).toFixed(1);
+    from20above__modalKMPrice.innerHTML = intLFormat.format(
+      uber.uberPriceFrom20AndAbove
+    );
     from20above__modalTotalKMPrice.innerHTML = intLFormat.format(from20above);
   }
 }
 
 function calculatePrice(km, tgCho, uber) {
-  totalWait = 0,
-  totalMoney = 0,
-  totalKM = 0,
-  from0to1 = 0,
-  from1to20 = 0,
+  totalWait = 0;
+  totalMoney = 0;
+  totalKM = 0;
+  from0to1 = 0;
+  from1to20 = 0;
   from20above = 0;
 
   totalWait = tgCho * Number(uber.uberWaitPrice);
@@ -163,9 +174,7 @@ function calculatePrice(km, tgCho, uber) {
     from20above = uber.uberPriceFrom20AndAbove * (km - 20);
     totalKM = Number(from20above) + Number(from1to20) + Number(from0to1);
     totalMoney = totalKM + totalWait;
-    
   }
-  console.log("a ", totalKM);
 }
 
 function loadUber() {

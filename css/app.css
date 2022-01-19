@@ -179,14 +179,27 @@ html {
 }
 .modal .modal-body .table__div {
   border-top: 1px dashed gray;
+  border-bottom: 1px dashed gray;
+  margin-bottom: 4px;
   padding: 10px 20px;
 }
-.modal .modal-body .table__div table > tbody > tr > td {
+.modal .modal-body .table__div table > tbody > tr td {
   font-size: 1rem;
   padding: 5px 0 !important;
 }
+.modal .modal-body .table__div table > tbody > tr .tbody__title {
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 115px;
+}
+.modal .modal-body .table__div table > tbody > .tbody__totalKM td {
+  padding-top: 20px !important;
+}
+.modal .modal-body .table__div table > tbody > .tbody__totalKM .tbody__totalKM-title {
+  font-weight: bold;
+  white-space: nowrap;
+}
 .modal .modal-footer {
-  border-top: 1px dashed gray !important;
   justify-content: space-between;
 }
 .modal .modal-footer p {
